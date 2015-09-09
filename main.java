@@ -51,10 +51,7 @@ public class main{
 		}
 		catch(IOException io){
 			System.out.println("Error, ocurrio un problema en lectura del documento u operacion");
+	
 		}
-		catch(FileNotFoundException file){
-			System.out.println("Error, el archivo no se encuentra");
-		}
-		
 	}
 }
