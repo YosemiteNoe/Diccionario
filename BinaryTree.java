@@ -2,6 +2,7 @@
 
 // An implementation of nodes for use in binary trees.
 // (c) 1998, 2001 duane a. bailey
+//https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0CCcQFjABahUKEwjrm6HggevHAhWLph4KHdqEDUE&url=http%3A%2F%2Fwww.cs.pomona.edu%2F~dkauchak%2Fclasses%2Fs10%2Fcs062-s10%2Fdemos%2FBinaryTree%2FBinaryTree.java&usg=AFQjCNG6Egvkf14uwdGbJ8r1injUA5WFDA&sig2=5UeWNG8JYwa2nV5gilGkSw
 //packageture5;
 import java.lang.Math;
 import java.util.Iterator;
