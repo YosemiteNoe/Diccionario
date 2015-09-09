@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Main{
+public class main{
 	public static void main(String[] args) {
 		try{
 			String linea;
@@ -57,3 +57,4 @@ public class Main{
 		}
 		
 	}
+}
