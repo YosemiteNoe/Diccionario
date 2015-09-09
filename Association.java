@@ -35,11 +35,11 @@ public class Association<K,V>
     /**
      * The immutable key.  An arbitrary object.
      */
-    protected K theKey; // the key of the key-value pair
+    protected K Key; // the key of the key-value pair
     /**
      * The mutable value.  An arbitrary object.
      */
-    protected V theValue; // the value of the key-value pair
+    protected V Value; // the value of the key-value pair
 
     /*
       for example:
@@ -56,8 +56,8 @@ public class Association<K,V>
      */
     public Association(K key, V value)
     {
-        theKey = key;
-        theValue = value;
+        Key = key;
+        Value = value;
     }
 
 
@@ -95,7 +95,7 @@ public class Association<K,V>
      */
     public V getValue()
     {
-        return theValue;
+        return Value;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Association<K,V>
      */
     public K getKey()
     {
-        return theKey;
+        return Key;
     }
 
     /**
@@ -117,7 +117,7 @@ public class Association<K,V>
      */
     public void setValue(V value)
     {
-        theValue = value;  
+        Value = value;  
     }
 
     /**
@@ -128,7 +128,7 @@ public class Association<K,V>
      */
     public void setKey(K Key)
     {
-        theKey = Key;  
+        Key = Key;  
     }
 }
 
