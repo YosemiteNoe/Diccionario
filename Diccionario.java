@@ -31,6 +31,7 @@ public class Diccionario {
 							if(linea.charAt(contador)==',')
 								break;
 							ingles+=linea.charAt(contador);
+							
 						}
 					}
 					if(linea.charAt(contador)==' ')
@@ -39,11 +40,14 @@ public class Diccionario {
 							if(linea.charAt(contador)==')')
 								break;
 							espanol+=linea.charAt(contador);
+							
 						}
+					BST.addTranslation(ingles, espanol);
 					contador=contador+1;
 				}
 				
-				Association association = new Association(ingles,espanol);
+				//Association association = new Association(ingles,espanol);	
+				System.out.println("Se agregó" + ingles + " y" + espanol);
 				
 			}
 			doc.close();
@@ -63,10 +67,19 @@ public class Diccionario {
 				int contador2=0;
 				String palabra="";
 				System.out.println(linea);
+				
 				while(contador2<linea.length()){
-					if(linea.charAt(contador2)!=' ' & linea.charAt(contador2)!='.')
+				
+					
+					if(linea.charAt(contador2)!=' ' & linea.charAt(contador2)!='.'){
 						palabra+=linea.charAt(contador2);
+						
+					}
+						
 					else{
+						
+						System.out.println(palabra + " " + BST.getTranslation(palabra));
+						//System.out.println(palabra);
 						palabra = '*'+palabra+"*";
 						
 						

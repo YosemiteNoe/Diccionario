@@ -13,8 +13,8 @@ import java.util.Stack;
 public class BinarySearchTree{
 	BinaryTree<Association<String,String>> root = null;
 	
-        Comparator cmp = new Comparator();	
-        protected Stack<BinaryTree<Association<String,String>>> todo = new Stack<BinaryTree<Association<String,String>>>();
+    Comparator cmp = new Comparator();	
+    protected Stack<BinaryTree<Association<String,String>>> todo = new Stack<BinaryTree<Association<String,String>>>();
 	int counter = 0;
 	
 	/**
@@ -27,19 +27,20 @@ public class BinarySearchTree{
 	//Locate method
 	public BinaryTree<Association<String,String>> locate(BinaryTree<Association<String,String>> root, String value){
 		String rootValue = root.getValue().getKey();
-		BinaryTree<Association<String,String>> child = null;
+		BinaryTree<Association<String,String>> child;
 		
 		//found at root: done
-		if(rootValue.equals(value)) return root;
+		if(rootValue.equals(value)){
+			return root;
+		}
 		//look left if less-than, right if greater-than
 		if(cmp.equal(rootValue, value)==1){
 			child = root.right();
 		}else {
                       child = root.left();
                 }
-		
 		//no child there: not in tree, return this node, else keep searching
-		if(child.isEmpty() ){
+		if(child == null){
 			return root;
 		} else {
 			return locate(child, value);
@@ -78,6 +79,7 @@ public class BinarySearchTree{
 	}
 	
 	//Get translation method
+	
 	public String getTranslation(String english){
 		if(root==null){
 			return null;
@@ -87,7 +89,7 @@ public class BinarySearchTree{
 		if(possibleLocation.getValue().getKey()==english){
 			return possibleLocation.getValue().getValue();
 		} else {
-			return null;
+			return "Cagada";
 		}
 	}
 	

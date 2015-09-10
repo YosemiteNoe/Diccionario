@@ -57,9 +57,9 @@ public class BinaryTree<E>
     {
         
         val = value;
-        right = left = new BinaryTree<E>();
+       /* right = left = new BinaryTree<E>();
         setLeft(left);
-        setRight(right);
+        setRight(right); */
     }
 
     /**
@@ -71,15 +71,15 @@ public class BinaryTree<E>
      * @param left The subtree to be left subtree of node
      * @param right The subtree to be right subtree of node
      */
-    public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right)
-    {
+   // public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right)
+    //{
         
-        val = value;
-        if (left == null) { left = new BinaryTree<E>(); }
-        setLeft(left);
-        if (right == null) { right = new BinaryTree<E>(); }
-        setRight(right);
-    }
+      //  val = value;
+        //if (left == null) { left = new BinaryTree<E>(); }
+        //setLeft(left);
+        //if (right == null) { right = new BinaryTree<E>(); }
+        //setRight(right);
+    //}
 
     /**
      * Get left subtree of current node

@@ -5,7 +5,7 @@
  */
 
 /**
- * jose corona
+ * jose corona 
  * @author Admin
  */
 public class Comparator {
@@ -19,16 +19,19 @@ public class Comparator {
         } else {
                 Lenght = word2.length();
         }
-        //Se hace una comparacion letra por letra, hasta que se ecuentre una diferente. Orden alfabetico
+        //compara cada letra para ordenarlo en orden alfabético
         for(int i=0; i<Lenght; i++){
                 if(Array1[i]<Array2[i]){
-                        return 1;               //se devuelve 1 si la primera paralabra es mayor
+                	//Si la palabra 1 es menor, retorna un 1
+                        return 1;           
                 }
 
                 if(Array1[i]>Array2[i]){
-                        return -1;              //se devuelve 0 si la segunda palabra es mayor
+                	//Si la palabra 2 es menor, retorna 0
+                        return -1;              
                 }
         }		
+        //si la palabra ya está, no importa que retorna
         return 2;
     }
 }
