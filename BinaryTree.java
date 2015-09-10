@@ -375,7 +375,7 @@ public class BinaryTree<E>
      * 
      * @return The node's value
      */
-    public E value()
+    public E getValue()
     {
         return val;
     }
@@ -398,7 +398,7 @@ public class BinaryTree<E>
     {
         if (isEmpty()) return 0;
         int result = left().hashCode() + right().hashCode();
-        if (value() != null) result += value().hashCode();
+        if (getValue() != null) result += getValue().hashCode();
         return result;
     }
     
