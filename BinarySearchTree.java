@@ -11,9 +11,10 @@
 import java.util.Stack;
 
 public class BinarySearchTree{
-	BinaryTree<Association> root = null;
-	Comparator cmp = new Comparator();
-	protected Stack<BinaryTree<Association>> todo = new Stack<BinaryTree<Association>>();
+	BinaryTree<Association<String,String>> root = null;
+	
+        Comparator cmp = new Comparator();	
+        protected Stack<BinaryTree<Association<String,String>>> todo = new Stack<BinaryTree<Association<String,String>>>();
 	int counter = 0;
 	
 	/**
@@ -24,30 +25,29 @@ public class BinarySearchTree{
 	 * @return the binary tree
 	 */
 	//Locate method
-	public BinaryTree<Association> locate(BinaryTree<Association> root, String value){
+	public BinaryTree<Association<String,String>> locate(BinaryTree<Association<String,String>> root, String value){
 		String rootValue = root.getValue().getKey();
-		BinaryTree<Association> child;
+		BinaryTree<Association<String,String>> child = null;
 		
 		//found at root: done
 		if(rootValue.equals(value)) return root;
 		//look left if less-than, right if greater-than
 		if(cmp.equal(rootValue, value)==1){
 			child = root.left();
-		}
+		}else {
+                      child = root.left();
+                }
 		
 		//no child there: not in tree, return this node, else keep searching
-		if(child==null){
+		if(child.isEmpty() ){
 			return root;
 		} else {
 			return locate(child, value);
 		}
 	}
 	
-	//Add method
-	public void add(Association Association){
-			child = root.right();
-		} else {
-		BinaryTree<Association> newNode = new BinaryTree<Association>(Association);
+	public void add(Association<String,String> asociacion){
+		BinaryTree<Association<String,String>> newNode = new BinaryTree<Association<String,String>>(asociacion);
 		
 		//Add value to binary search tree
 		//if there's no root, create value at root
@@ -55,15 +55,15 @@ public class BinarySearchTree{
 			root = newNode;
 			counter++;
 		} else {
-			BinaryTree<Association> insertLocation = locate(root, Association.getKey());
+			BinaryTree<Association<String,String>> insertLocation = locate(root, asociacion.getKey());
 			String nodeValue = insertLocation.getValue().getKey();
 			//If the newNode is greater than insertLocation, set it to the right.
-			if(cmp.equal(Association.getKey(), nodeValue)==1){
+			if(cmp.equal(asociacion.getKey(), nodeValue)==1){
 				insertLocation.setLeft(newNode);
 				counter++;
 			} 
 			//If the newNode is lower than insertLocation, set it to the left.
-			if(cmp.equal(Association.getKey(), nodeValue)==-1){
+			if(cmp.equal(asociacion.getKey(), nodeValue)==-1){
 				insertLocation.setRight(newNode);
 				counter++;
 			} 
@@ -74,7 +74,7 @@ public class BinarySearchTree{
 	
 	//Add translation method
 	public void addTranslation(String english, String spanish){
-		add(new Association(english,spanish));
+		add(new Association<String,String>(english,spanish));
 	}
 	
 	//Get translation method
@@ -83,7 +83,7 @@ public class BinarySearchTree{
 			return null;
 		}
 		
-		BinaryTree<Association> possibleLocation = locate(root, english);
+		BinaryTree<Association<String,String>> possibleLocation = locate(root, english);
 		if(possibleLocation.getValue().getKey()==english){
 			return possibleLocation.getValue().getValue();
 		} else {
@@ -100,7 +100,7 @@ public class BinarySearchTree{
 	public void resetIterator(){
 		todo.clear();
 		//Stack is empty. Push nodes from root to leftmost descendant
-		BinaryTree<Association> current = root;
+		BinaryTree<Association<String,String>> current = root;
 		while(current!=null){
 			todo.push(current);
 			current = current.left();
@@ -108,15 +108,15 @@ public class BinarySearchTree{
 	}
 	
 	//Next method
-	public Association next(){
-		BinaryTree<Association> old = todo.pop();
-		Association result = old.getValue();
+	public Association<String,String> next(){
+		BinaryTree<Association<String,String>> old = todo.pop();
+		Association<String,String> result = old.getValue();
 		//We know this node has no unconsidered left children; if this node has right child,
 		//we push the right child and its leftmost descendants:
 		//else
 		//	top element of stack is next node to be visited
 		if(old.right()!=null){
-			BinaryTree<Association> current = old.right();
+			BinaryTree<Association<String,String>> current = old.right();
 			do{
 				todo.push(current);
 				current = current.left();

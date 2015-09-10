@@ -283,8 +283,6 @@ public class BinaryTree<E>
                left().isBalanced() && right().isBalanced();
     }
 
-   
-
     /**
      * Method to perform a right rotation of tree about this node
      * Node must have a left child.  Relation between left child and node
@@ -437,7 +435,5 @@ public class BinaryTree<E>
         return "Root";  
     }
     
-    
- 
 }
 

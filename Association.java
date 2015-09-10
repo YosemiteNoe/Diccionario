@@ -35,17 +35,18 @@ public class Association<K,V>
     /**
      * The immutable key.  An arbitrary object.
      */
-    protected K Key; // the key of the key-value pair
+    protected K theKey; // the key of the key-value pair
     /**
      * The mutable value.  An arbitrary object.
      */
-    protected V Value; // the value of the key-value pair
+    protected V theValue; // the value of the key-value pair
 
-    /*
-      for example:
-      Association<String,Integer> personAttribute =
-         new Assocation<String,Integer>("Age",34);
+    /**
+    *  for example:
+    *  Association<String,Integer> personAttribute =
+    *     new Assocation<String,Integer>("Age",34);
      */
+    
     /**
      * Constructs a pair from a key and value.
      *
@@ -56,8 +57,8 @@ public class Association<K,V>
      */
     public Association(K key, V value)
     {
-        Key = key;
-        Value = value;
+        theKey = key;
+        theValue = value;
     }
 
 
@@ -95,7 +96,7 @@ public class Association<K,V>
      */
     public V getValue()
     {
-        return Value;
+        return theValue;
     }
 
     /**
@@ -106,7 +107,7 @@ public class Association<K,V>
      */
     public K getKey()
     {
-        return Key;
+        return theKey;
     }
 
     /**
@@ -117,7 +118,7 @@ public class Association<K,V>
      */
     public void setValue(V value)
     {
-        Value = value;  
+        theValue = value;  
     }
 
     /**
@@ -128,7 +129,7 @@ public class Association<K,V>
      */
     public void setKey(K Key)
     {
-        Key = Key;  
+        theKey = Key;  
     }
 }
 
