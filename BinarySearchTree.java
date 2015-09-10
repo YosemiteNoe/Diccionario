@@ -33,7 +33,7 @@ public class BinarySearchTree{
 		if(rootValue.equals(value)) return root;
 		//look left if less-than, right if greater-than
 		if(cmp.equal(rootValue, value)==1){
-			child = root.left();
+			child = root.right();
 		}else {
                       child = root.left();
                 }
