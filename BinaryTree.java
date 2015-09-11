@@ -53,9 +53,9 @@ public class BinaryTree<E>
     {
         
         val = value;
-       /* right = left = new BinaryTree<E>();
+        right = left = new BinaryTree<E>();
         setLeft(left);
-        setRight(right); */
+        setRight(right);
     }
 
     /**
@@ -67,17 +67,6 @@ public class BinaryTree<E>
      * @param left The subtree to be left subtree of node
      * @param right The subtree to be right subtree of node
      */
-<<<<<<< HEAD
-   // public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right)
-    //{
-        
-      //  val = value;
-        //if (left == null) { left = new BinaryTree<E>(); }
-        //setLeft(left);
-        //if (right == null) { right = new BinaryTree<E>(); }
-        //setRight(right);
-    //}
-=======
     public BinaryTree(BinaryTree right, BinaryTree left,String wordIng, String wordEsp)
     {
        super();   //
@@ -86,7 +75,6 @@ public class BinaryTree<E>
        word = new Association<String,String>(wordIng,wordEsp);
        
     }
->>>>>>> origin/master
 
     /**
      * Get left subtree of current node
