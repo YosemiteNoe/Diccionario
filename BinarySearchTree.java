@@ -70,11 +70,16 @@ public class BinarySearchTree<E>{
             }
             search(parent.getRight(), wordIng);
         }
-        
-        public String getTraduccion() {
-		return  translation;
+       
+	
+        public E getTraduccion() {
+		return (E) translation;
+	}
+	public void setTraduccion(String newTraduccion) {
+		translation = newTraduccion;
 	}
 	
+        
 	//Get words quantity method
 	public int getWordsQuantity(){
 		return counter;
