@@ -27,25 +27,20 @@ public class BinaryTree<E>
     /**
      * The parent of this node
      */
-    protected BinaryTree<E> parent; // parent of node
+    private BinaryTree<E> parent; // parent of node
     /**
      * The left child of this node, or an "empty" node
      */
-    protected BinaryTree<E> left, right; // children of node
-
+    private BinaryTree<E> left, right; // children of node
     /**
-     * A one-time constructor, for constructing empty trees.
-     * Space efficiencies are possible if empty trees are reused.
-     *
-     * @post Constructor that generates an empty node
-     * @return an empty node
+     * The association of this node
      */
-    public BinaryTree()
-    {
-        val = null;
-        parent = null; left = right = this;
-    }
+    private Association<String,String> word;
+    
 
+    public BinaryTree(){
+    
+    }
     /**
      * Constructs a tree node with no children.  Value of the node
      * and subtrees are provided by the user
@@ -53,6 +48,7 @@ public class BinaryTree<E>
      * @post Returns a tree referencing value and two empty subtrees
      * @param value A non-null value to be referenced by node
      */
+    
     public BinaryTree(E value)
     {
         
@@ -71,6 +67,7 @@ public class BinaryTree<E>
      * @param left The subtree to be left subtree of node
      * @param right The subtree to be right subtree of node
      */
+<<<<<<< HEAD
    // public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right)
     //{
         
@@ -80,6 +77,16 @@ public class BinaryTree<E>
         //if (right == null) { right = new BinaryTree<E>(); }
         //setRight(right);
     //}
+=======
+    public BinaryTree(BinaryTree right, BinaryTree left,String wordIng, String wordEsp)
+    {
+       super();   //
+       this.right=right;
+       this.left=left;
+       word = new Association<String,String>(wordIng,wordEsp);
+       
+    }
+>>>>>>> origin/master
 
     /**
      * Get left subtree of current node
@@ -88,7 +95,7 @@ public class BinaryTree<E>
      *
      * @return The left subtree of this node
      */
-    public BinaryTree<E> left()
+    public BinaryTree<E> getLeft()
     {
         return left;
     }
@@ -100,7 +107,7 @@ public class BinaryTree<E>
      * 
      * @return The right subtree of this node
      */
-    public BinaryTree<E> right()
+    public BinaryTree<E> getRight()
     {
         return right;
     }
@@ -126,12 +133,9 @@ public class BinaryTree<E>
      * 
      * @param newLeft The root of the new left subtree
      */
-    public void setLeft(BinaryTree<E> newLeft)
-    {
-        if (isEmpty()) return;
-        if (left != null && left.parent() == this) left.setParent(null);
-        left = newLeft;
-        left.setParent(this);
+    public void setLeft(BinaryTree newLeft)
+    {     
+        left = newLeft;    
     }
 
     /**
@@ -145,10 +149,7 @@ public class BinaryTree<E>
      */
     public void setRight(BinaryTree<E> newRight)
     {
-        if (isEmpty()) return;
-        if (right != null && right.parent() == this) right.setParent(null);
         right = newRight;
-        right.setParent(this);
     }
 
     /**
@@ -164,7 +165,22 @@ public class BinaryTree<E>
             parent = newParent;
         }
     }
-
+    
+    public void setWordIng(String newWordIng){
+        word.setKey(newWordIng);
+    }
+    
+    public void setWordEsp(String newWordEsp){
+        word.setValue(newWordEsp);
+    }
+    
+    public String getWordIng(){
+        return word.getKey();
+    }
+    
+    public String getWordEsp(){
+        return word.getValue();
+    }
     /**
      * Returns the number of descendants of node
      *
@@ -174,7 +190,7 @@ public class BinaryTree<E>
     public int size()
     {
         if (isEmpty()) return 0;
-        return left().size() + right().size() + 1;
+        return getLeft().size() + getRight().size() + 1;
     }
 
     /**
@@ -215,19 +231,6 @@ public class BinaryTree<E>
         return 1 + parent.depth();
     }
 
-    /**
-     * Returns true if tree is full.  A tree is full if adding a node
-     * to tree would necessarily increase its height
-     *
-     * @post Returns true iff the tree rooted at node is full
-     * @return True iff tree is full
-     */
-    public boolean isFull()
-    {
-        if (isEmpty()) return true;
-        if (left().height() != right().height()) return false;
-        return left().isFull() && right().isFull();
-    }
 
     /**
      * Returns true if tree is empty.
@@ -252,93 +255,13 @@ public class BinaryTree<E>
         boolean leftIsFull, rightIsFull;
         boolean leftIsComplete, rightIsComplete;
         if (isEmpty()) return true;
-        leftHeight = left().height();
-        rightHeight = right().height();
-        leftIsFull = left().isFull();
-        rightIsFull = right().isFull();
-        leftIsComplete = left().isComplete();
-        rightIsComplete = right().isComplete();
-
-        // case 1: left is full, right is complete, heights same
-        if (leftIsFull && rightIsComplete &&
-            (leftHeight == rightHeight)) return true;
-        // case 2: left is complete, right is full, heights differ
-        if (leftIsComplete && rightIsFull &&
-            (leftHeight == (rightHeight + 1))) return true;
+        leftHeight = getLeft().height();
+        rightHeight = getRight().height();
+        leftIsComplete = getLeft().isComplete();
+        rightIsComplete = getRight().isComplete();
         return false;
     }
 
-    /**
-     * Return true iff the tree is height balanced.  A tree is height
-     * balanced iff at every node the difference in heights of subtrees is
-     * no greater than one
-     *
-     * @post Returns true iff the tree rooted at node is balanced
-     * @return True if tree is height balanced
-     */
-    public boolean isBalanced()
-    {
-        if (isEmpty()) return true;
-        return (Math.abs(left().height()-right().height()) <= 1) &&
-               left().isBalanced() && right().isBalanced();
-    }
-
-    /**
-     * Method to perform a right rotation of tree about this node
-     * Node must have a left child.  Relation between left child and node
-     * are reversed
-     *
-     * @pre This node has a left subtree
-     * @post Rotates local portion of tree so left child is root
-     */
-    protected void rotateRight()
-    {
-        BinaryTree<E> parent = parent();
-        BinaryTree<E> newRoot = left();
-        boolean wasChild = parent != null;
-        boolean wasLeftChild = isLeftChild();
-
-        // hook in new root (sets newRoot's parent, as well)
-        setLeft(newRoot.right());
-
-        // puts pivot below it (sets this's parent, as well)
-        newRoot.setRight(this);
-
-        if (wasChild) {
-            if (wasLeftChild) parent.setLeft(newRoot);
-            else              parent.setRight(newRoot);
-        }
-    }
-
-    /**
-     * Method to perform a left rotation of tree about this node
-     * Node must have a right child.  Relation between right child and node
-     * are reversed
-     *
-     * @pre This node has a right subtree
-     * @post Rotates local portion of tree so right child is root
-     */
-    protected void rotateLeft()
-    {
-        // all of this information must be grabbed before
-        // any of the references are set.  Draw a diagram for help
-        BinaryTree<E> parent = parent();
-        BinaryTree<E> newRoot = right();
-        // is the this node a child; if so, a left child?
-        boolean wasChild = parent != null;
-        boolean wasRightChild = isRightChild();
-
-        // hook in new root (sets newRoot's parent, as well)
-        setRight(newRoot.left());
-
-        // put pivot below it (sets this's parent, as well)
-        newRoot.setLeft(this);
-
-        if (wasChild) {
-            if (wasRightChild) parent.setRight(newRoot);
-            else               parent.setLeft(newRoot);
-        }
-    }
 
     /**
      * Determine if this node is a left child
@@ -350,7 +273,7 @@ public class BinaryTree<E>
     public boolean isLeftChild()
     {
         if (parent() == null) return false;
-        return this == parent().left();
+        return this == parent().getLeft();
     }
 
     /**
@@ -363,7 +286,7 @@ public class BinaryTree<E>
     public boolean isRightChild()
     {
         if (parent() == null) return false;
-        return this == parent().right();
+        return this == parent().getRight();
     }
 
     /**
@@ -387,17 +310,6 @@ public class BinaryTree<E>
     public void setValue(E value)
     {
         val = value;
-    }
-
-    /**
-     * @post return sum of hashcodes of the contained values
-     */
-    public int hashCode()
-    {
-        if (isEmpty()) return 0;
-        int result = left().hashCode() + right().hashCode();
-        if (getValue() != null) result += getValue().hashCode();
-        return result;
     }
     
     /**
