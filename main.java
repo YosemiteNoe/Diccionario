@@ -5,7 +5,9 @@
  */
 
 /**
- *
+ *  *  Jose Ramon Corona Boch 14417
+ *  Yosemite Noe melendez  
+ *  Julio Octavio
  * @author Admin
  */
 import java.io.FileReader;

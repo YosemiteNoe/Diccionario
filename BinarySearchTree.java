@@ -5,11 +5,13 @@
  */
 
 /**
- *
+ *  Jose Ramon Corona Boch 14417
+ *  Yosemite Noe melendez  
+ *  Julio Octavio
  * @author Admin
  */
 
-public class BinarySearchTree{
+public class BinarySearchTree<E>{
 	private BinaryTree root;
         private String translation;
 	

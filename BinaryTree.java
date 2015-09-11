@@ -8,6 +8,9 @@ import java.lang.Math;
 import java.util.Iterator;
 
 /**
+ *  Jose Ramon Corona Boch 14417
+ *  Yosemite Noe melendez  
+ *  Julio Octavio
  * This class implements a single node of a binary tree.  It is a
  * recursive structure.  Relationships between nodes are 
  * doubly linked, with parent and child references.  Many characteristics
